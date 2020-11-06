@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+
+
+
+
   <style>
      *{
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      /* font-family: raleway; */
+      font-family: 'PT Serif', serif;
+
+
     }
     
     .container{
@@ -56,7 +62,7 @@
     }
 
     .nav{
-      height: 70px;
+      height: 100px;
     }
     thead tr:last-child{
       font-size: 15px;
@@ -66,7 +72,7 @@
     .today{
       text-align:right;
       padding-right:50px;
-      font-size:50px;
+      font-size:45px;
 
     }
 
@@ -141,9 +147,9 @@
         <thead>
           <tr>
             <th colspan="7" class="nav">
-              <a class="navbar" href="layout.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
+              <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
               <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first))?></span>
-              <a class="navbar" href="layout.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
+              <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
               <!-- 今天星期幾 -->
               <div class="today"><?php echo $todate."&nbsp;".$today."." ?></div>
             </th>
