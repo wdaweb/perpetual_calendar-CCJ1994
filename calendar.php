@@ -72,8 +72,8 @@
     .today{
       text-align:right;
       padding-right:50px;
-      font-size:45px;
-      
+      font-size:40px;
+      color: #2c3e50;
     }
 
     table td {
@@ -95,7 +95,10 @@
     }
     .futuredays{
       color:grey;
-      opacity: 0.4;
+      opacity: 0.3;
+    }
+    .weekend{
+      color: #e74c3c;
     }
   </style>
 </head>
@@ -110,6 +113,7 @@
       $month=date("m");
       $year=date("Y");
     }
+    
 
     if(!empty($_GET['d'])){
       $today=$_GET['d'];
@@ -154,22 +158,41 @@
         <thead>
           <tr>
             <th colspan="7" class="nav">
-              
-              <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
-              <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first))?></span>
-              <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
+              <div>
+                <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
+                <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first));?></span>
+                <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
+                <form action="calendar.php" method="get">
+                  <select name="m" id="">
+                    <option value="<?=$month;?>"><?php echo date("M").".";?></option>
+                    <option value="1">Jan.</option>
+                    <option value="2">Feb.</option>
+                    <option value="3">Mar.</option>
+                    <option value="4">Apr.</option>
+                    <option value="5">May.</option>
+                    <option value="6">Jun.</option>
+                    <option value="7">Jul.</option>
+                    <option value="8">Aug.</option>
+                    <option value="9">Sep.</option>
+                    <option value="10">Oct.</option>
+                    <option value="11">Nov.</option>
+                    <option value="12">Dec.</option>
+                  <input type="number" name="y" value="<?=$year;?>" min="100" max="9999" placeholder="Please enter Year" required >
+                  <input type="submit" value="GO">
+                </form>
+              </div>
               <!-- 今天星期幾 -->
               <div class="today"><?php echo $todate."&nbsp;".$today."." ?></div>
             </th>
           </tr>
           <tr>
-            <th>Sun.</th>
+            <th class="weekend">Sun.</th>
             <th>Mon.</th>
             <th>Tue.</th>
             <th>Wed.</th>
             <th>Thu.</th>
             <th>Fri.</th>
-            <th>Sat.</th>
+            <th class="weekend">Sat.</th>
           </tr>
         </thead>
           <?php
