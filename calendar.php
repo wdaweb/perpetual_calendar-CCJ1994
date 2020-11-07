@@ -94,6 +94,8 @@
       opacity: 0.3;
     }
     .futuredays{
+      background-image:url(./img/pattern-01.png);
+      height:70px;
       color:grey;
       opacity: 0.3;
     }
@@ -164,7 +166,7 @@
                 <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
                 <form action="calendar.php" method="get">
                   <select name="m" id="">
-                    <option value="<?=$month;?>"><?php echo date("M").".";?></option>
+                    <option value="<?=$month;?>"><?php echo date('M').".";?></option>
                     <option value="1">Jan.</option>
                     <option value="2">Feb.</option>
                     <option value="3">Mar.</option>
@@ -177,7 +179,7 @@
                     <option value="10">Oct.</option>
                     <option value="11">Nov.</option>
                     <option value="12">Dec.</option>
-                  <input type="number" name="y" value="<?=$year;?>" min="100" max="9999" placeholder="Please enter Year" required >
+                  <input type="number" name="y" value="<?php echo date('Y');?>" min="100" max="9999" placeholder="Please enter Year" required >
                   <input type="submit" value="GO">
                 </form>
               </div>
