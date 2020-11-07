@@ -22,7 +22,7 @@
       margin: 50px auto;
       border: 1px solid #f1f2f6;
       border-radius: 5px;
-      box-shadow: 0px 5px 10px #f1f2f6;
+      box-shadow: 0px 10px 15px #f1f2f6;
       background-color: #f6f8fa;
     }
     .sidel{
@@ -73,7 +73,7 @@
       text-align:right;
       padding-right:50px;
       font-size:45px;
-
+      
     }
 
     table td {
@@ -87,8 +87,15 @@
     table td:hover{
       background-color: #fff;
     }
-    span{
-      color:lightgrey;
+    .pastdays{
+      color:grey;
+      background-image:url(./img/pattern-01.png);
+      height:70px;
+      opacity: 0.3;
+    }
+    .futuredays{
+      color:grey;
+      opacity: 0.4;
     }
   </style>
 </head>
@@ -147,6 +154,7 @@
         <thead>
           <tr>
             <th colspan="7" class="nav">
+              
               <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
               <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first))?></span>
               <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
@@ -174,13 +182,13 @@
                 // 1號前的留空格
                 if($i==0 && $j<$startWeekday){
                   //印上個月日期
-                  echo "<span>".($prevMonthdays-$startWeekday+1+$j)."</span>";
+                  echo "<div class='pastdays'>".($prevMonthdays-$startWeekday+1+$j)."</div>";
                   // echo "&nbsp;";
         
                   // 最後一天後的留空格
                 }else if(((7*$i)+1+$j-$startWeekday)>$days){
                   //印下個月日期
-                  echo "<span>".((7*$i)+1+$j-$startWeekday-$days)."</span>";
+                  echo "<div class='futuredays'>".((7*$i)+1+$j-$startWeekday-$days)."</div>";
                   
                   // 印日期
                 }else{
