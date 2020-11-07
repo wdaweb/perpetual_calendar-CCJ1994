@@ -184,7 +184,7 @@
                 </form>
               </div>
               <!-- 今天星期幾 -->
-              <div class="today"><?php echo $todate."&nbsp;".$today."." ?></div>
+              <div class="today"><?php echo date('M').".&nbsp;".$todate;?></div>
             </th>
           </tr>
           <tr>
