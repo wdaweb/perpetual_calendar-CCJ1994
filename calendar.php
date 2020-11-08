@@ -169,8 +169,15 @@
       color: #e74c3c;
     }
     .todaydate{
+      font-size:10px;
+      color: #34495e;
+      position:relative;
+      z-index:99;
+    }
+    .todaydate::before{
+      position:absolute;
+      content:"";
       background:#34495e;
-
       border-radius: 50%;
       width: 30px;
       height: 30px;
@@ -179,7 +186,7 @@
       box-shadow: 0 0 0 0 #34495e;
       transition: 1s;
     }
-    .todaydate:hover{
+    .todaydate:hover::before{
       box-shadow: 0 0 0 200px #34495e;
       
     }
@@ -316,7 +323,7 @@
                   echo ((7*$i)+1+$j-$startWeekday);
                 }
                       if((7*$i)+1+$j-$startWeekday==$todaydate && $month==date('m') && $year==date('Y')){
-                        echo "<div class='todaydate'></div>";
+                        echo "<div class='todaydate'>It's Today.</div>";
                       }
                 
                 echo "</td>";
