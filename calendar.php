@@ -5,15 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-
-
-
-
   <style>
      *{
       font-family: 'PT Serif', serif;
-
-
     }
     
     .container{
@@ -66,13 +60,13 @@
     }
     .bar2{
       position:absolute;
-      left:140px;
+      left:160px;
     }
     
     .navbar{
       padding: 5px;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 18px;
       color: #2d98da;
     }
     .navbar:hover{
@@ -145,7 +139,6 @@
       padding-right:50px;
       font-size:40px;
       color: #2c3e50;
-
     }
 
     table td {
@@ -174,6 +167,14 @@
     .weekend{
       color: #e74c3c;
     }
+    .todaydate{
+      border: 2px solid #e74c3c;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translate(-5px,-35px);
+    }
+    
 
   </style>
 </head>
@@ -192,10 +193,10 @@
 
     if(!empty($_GET['d'])){
       $today=$_GET['d'];
-    
-    }else{
-      $today=date('d');
     }
+    // }else{
+    //   $today=date('d');
+    // }
 
     // prevmonth
     if($month<=1){
@@ -223,8 +224,8 @@
     // 當月份有幾天
     $days=date("t",strtotime($first));
     $prevMonthdays=date("t",strtotime("$prevYear-$prevMonth-01"));
-    $today=date("D");
-    $todate=date("d");
+    $today=date("d");
+    $todaydate=date("d");
 ?>
 <div class="container">
     <div class="sidel"></div>
@@ -269,7 +270,7 @@
               </div>
               
               <!-- 今天幾號星期幾 -->
-              <div class="today"><?php echo date('M').".&nbsp;".$todate;?></div>
+              <div class="today"><?php echo date('M').".&nbsp;".$todaydate;?></div>
             </th>
           </tr>
           <tr>
@@ -303,8 +304,10 @@
                   // 印日期
                 }else{
                   echo ((7*$i)+1+$j-$startWeekday);
-                  
                 }
+                      if((7*$i)+1+$j-$startWeekday==$todaydate && $month==date('m') && $year==date('Y')){
+                        echo "<div class='todaydate'></div>";
+                      }
                 
                 echo "</td>";
               }
