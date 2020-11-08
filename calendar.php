@@ -18,7 +18,7 @@
     
     .container{
       display: flex;
-      width: 900px;
+      width: 1050px;
       margin: 50px auto;
       border: 1px solid #f1f2f6;
       border-radius: 5px;
@@ -27,27 +27,17 @@
     }
     .sidel{
       width: 50px;
-      /* background-color: #fff; */
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
     .sider{
-      width: 50px;
-      background-color: #2d98da;
+      width: 200px;
+      /* background-color: #2d98da; */
+      background-image: url(./img/pattern3.png);
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
     }
-    .navbar {
-      padding: 5px;
-      text-decoration: none;
-      font-size: 15px;
-      color: #2d98da;
-
-    }
-    a:active {
-      color: #45aaf2;
-
-    }
+    
     table {
       margin: auto;
       height: 700px;
@@ -63,7 +53,88 @@
 
     .nav{
       height: 100px;
+      padding-top:10px;
+      box-sizing:border-box;
     }
+    .bar{
+      display:flex;
+      position:relative;
+    }
+    .bar1{
+      position:absolute;
+
+    }
+    .bar2{
+      position:absolute;
+      left:140px;
+    }
+    
+    .navbar{
+      padding: 5px;
+      text-decoration: none;
+      font-size: 15px;
+      color: #2d98da;
+    }
+    .navbar:hover{
+      color:#34495e;
+    }
+
+    a{
+      animation: tag .6s ease infinite alternate;
+    }
+    @keyframes tag {
+      
+      100%{
+        opacity:0.5;
+      }
+    }
+    
+    a:active {
+      color: #45aaf2;
+    }
+    form{
+      display:flex;
+      position:relative;
+    }
+    .item1{
+      position:absolute;
+      left:90px;
+    }
+    .item2{
+      position:absolute;
+      left:170px;
+    }
+    select{
+      background-color: transparent;
+      border: 1px solid #2c3e50;
+      border-radius: 5px;
+      padding: 0 1em 0 0;
+      width: 70px;
+      font-size: 15px;
+      color: #2c3e50;
+    }
+    
+    .enter_y{
+      background-color: transparent;
+      border: 1px solid #2c3e50;
+      border-radius: 5px;
+      font-size: 15px;
+      color: #2c3e50;
+    }
+    .btn{
+      background-color: #ecf0f1;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      font-size: 15px;
+      color: #2c3e50;
+
+    }
+    .btn:hover{
+      border: 1px solid  #45aaf2;
+      background-color:  #45aaf2;
+      color: #ecf0f1;
+    }
+
     thead tr:last-child{
       font-size: 15px;
       height: 50px;
@@ -74,6 +145,7 @@
       padding-right:50px;
       font-size:40px;
       color: #2c3e50;
+
     }
 
     table td {
@@ -88,7 +160,7 @@
       background-color: #fff;
     }
     .pastdays{
-      color:grey;
+      color:#95a5a6;
       background-image:url(./img/pattern-01.png);
       height:70px;
       opacity: 0.3;
@@ -96,12 +168,13 @@
     .futuredays{
       background-image:url(./img/pattern-01.png);
       height:70px;
-      color:grey;
+      color:#95a5a6;
       opacity: 0.3;
     }
     .weekend{
       color: #e74c3c;
     }
+
   </style>
 </head>
 <body>
@@ -119,10 +192,10 @@
 
     if(!empty($_GET['d'])){
       $today=$_GET['d'];
+    
+    }else{
+      $today=date('d');
     }
-    // }else{
-    //   $today=date('d');
-    // }
 
     // prevmonth
     if($month<=1){
@@ -160,30 +233,42 @@
         <thead>
           <tr>
             <th colspan="7" class="nav">
-              <div>
-                <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
-                <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first));?></span>
-                <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
-                <form action="calendar.php" method="get">
-                  <select name="m" id="">
-                    <option value="<?=$month;?>"><?php echo date('M').".";?></option>
-                    <option value="1">Jan.</option>
-                    <option value="2">Feb.</option>
-                    <option value="3">Mar.</option>
-                    <option value="4">Apr.</option>
-                    <option value="5">May.</option>
-                    <option value="6">Jun.</option>
-                    <option value="7">Jul.</option>
-                    <option value="8">Aug.</option>
-                    <option value="9">Sep.</option>
-                    <option value="10">Oct.</option>
-                    <option value="11">Nov.</option>
-                    <option value="12">Dec.</option>
-                  <input type="number" name="y" value="<?php echo date('Y');?>" min="100" max="9999" placeholder="Please enter Year" required >
-                  <input type="submit" value="GO">
-                </form>
+              <div class="bar">
+                <div class="bar1">
+                  <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
+                  <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first));?></span>
+                  <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
+                </div>
+                <div class="bar2">
+                  <form action="calendar.php" method="get">
+                    <div class="selectm" >
+                      <select name="m">
+                        <option value="<?php echo date('m');?>"><?php echo date('M').".";?></option>
+                        <option value="1">Jan.</option>
+                        <option value="2">Feb.</option>
+                        <option value="3">Mar.</option>
+                        <option value="4">Apr.</option>
+                        <option value="5">May.</option>
+                        <option value="6">Jun.</option>
+                        <option value="7">Jul.</option>
+                        <option value="8">Aug.</option>
+                        <option value="9">Sep.</option>
+                        <option value="10">Oct.</option>
+                        <option value="11">Nov.</option>
+                        <option value="12">Dec.</option>
+                      </select>
+                    </div>
+                    <div class="item1">
+                      <input class="enter_y" type="number" name="y" value="<?php echo date('Y');?>" min="100" max="9999" placeholder="Please enter Year" required >
+                    </div>
+                    <div class="item2">
+                      <input class="btn" type="submit" value="GO">
+                    </div>
+                  </form>
+                </div>
               </div>
-              <!-- 今天星期幾 -->
+              
+              <!-- 今天幾號星期幾 -->
               <div class="today"><?php echo date('M').".&nbsp;".$todate;?></div>
             </th>
           </tr>
