@@ -148,6 +148,7 @@
       font-weight: bold; 
       font-size: 30px;
       height: 70px;
+      overflow: hidden;
     }
     table td:hover{
       background-color: #fff;
@@ -168,12 +169,21 @@
       color: #e74c3c;
     }
     .todaydate{
-      border: 2px solid #e74c3c;
+      background:#34495e;
+
       border-radius: 50%;
       width: 30px;
       height: 30px;
       transform: translate(-5px,-35px);
+      opacity:0.5;
+      box-shadow: 0 0 0 0 #34495e;
+      transition: 1s;
     }
+    .todaydate:hover{
+      box-shadow: 0 0 0 200px #34495e;
+      
+    }
+
     
 
   </style>
