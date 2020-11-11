@@ -197,11 +197,29 @@
       color:#f6f8fa;
       z-index:2;
     }
+
     table td:hover .holiday{
       color: #fff;
     }
+    .holiday::before{
+      content:"";
+      position:absolute;
+      width:10px;
+      height:10px;
+      background: #e74c3c;
+      z-index:-1;
+      top:-30px;
+      left:70px;
+      border-radius:50%;
+      box-shadow: 0 0 0 0 #e74c3c;
+      transition: 1s;
+    }
+    .holiday:hover::before{
+      box-shadow: 0 0 0 200px #e74c3c;
+    }
 
-    .hcircle{
+
+    /* .hcircle{
       position:relative;
       width:10px;
       height:10px;
@@ -210,11 +228,11 @@
       transform:translate(70px,-50px);
       box-shadow: 0 0 0 0 #e74c3c;
       transition: 1s;
-      
     }
+
     .hcircle:hover{
       box-shadow: 0 0 0 200px #e74c3c;
-    }
+    } */
 
   </style>
 </head>
@@ -364,7 +382,7 @@
                       if($date==$todaydate && $month==date('m') && $year==date('Y')){
                         echo "<div class='todaydate'></div>";
                       }elseif (!empty($holiday[$month.'-'.$date])) {
-                        echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div><div class='hcircle'></div>";
+                        echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div>";
                       }
                 
                 echo "</td>";
