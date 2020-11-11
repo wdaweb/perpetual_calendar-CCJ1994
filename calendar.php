@@ -241,10 +241,11 @@
       padding: 5px;
       text-decoration: none;
       font-size: 18px;
-      color: #7f8c8d;
+      color: #34495e;
     }
     .navbar:hover{
-      color:#34495e;
+      color:#7f8c8d;
+      color:;
     }
 
     a{
@@ -298,8 +299,8 @@
 
     }
     .btn:hover{
-      border: 1px solid  #45aaf2;
-      background-color:  #45aaf2;
+      border: 1px solid  #34495e;
+      background-color:  #34495e;
       color: #ecf0f1;
     }
 
