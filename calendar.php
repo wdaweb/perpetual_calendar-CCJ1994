@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap" rel="stylesheet">
+
   <style>
      *{
       font-family: 'PT Serif', serif;
@@ -13,11 +15,12 @@
     .container{
       display: flex;
       width: 1050px;
-      margin: 50px auto;
+      margin: 30px auto;
       border: 1px solid #f1f2f6;
       border-radius: 5px;
       box-shadow: 0px 10px 15px #f1f2f6;
       background-color: #f6f8fa;
+      
     }
     .sidel{
       width: 50px;
@@ -27,7 +30,7 @@
     .sider{
       width: 200px;
       /* background-color: #2d98da; */
-      background-image: url(./img/pattern3.png);
+      background-image: url(./img/sider7.png);
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
     }
@@ -153,6 +156,7 @@
     table td:hover{
       background-color: #fff;
     }
+    
     .pastdays{
       color:#95a5a6;
       background-image:url(./img/pattern-01.png);
@@ -190,7 +194,35 @@
       box-shadow: 0 0 0 200px #34495e;
       
     }
+    
+    .holiday{
+      position:relative;
+      font-family: 'Noto Serif TC', serif;
+      font-size:14px;
+      color:#f6f8fa;
+      z-index:2;
+    }
+    table td:hover .holiday{
+      color: #fff;
+    }
 
+    .hcircle{
+      position:relative;
+      width:10px;
+      height:10px;
+      background: #e74c3c;
+      border-radius:50%;
+      transform:translate(0px,0px);
+      box-shadow: 0 0 0 0 #e74c3c;
+      transition: 1s;
+      
+    }
+    .hcircle:hover{
+      box-shadow: 0 0 0 200px #e74c3c;
+    }
+    
+
+    
     
 
   </style>
@@ -300,13 +332,28 @@
             <th class="weekend">Sat.</th>
           </tr>
         </thead>
-          <?php
+        <?php
+              $holiday=[
+                '1-1'=>'元旦',
+                '2-28'=>'和平紀念日',
+                '3-8'=>'婦女節',
+                '4-4'=>'兒童節',
+                '5-1'=>'勞動節',
+                '9-3'=>'軍人節',
+                '9-28'=>'教師節',
+                '10-10'=>'國慶日',
+                '10-25'=>'光復節',
+                '10-31'=>'萬聖節',
+                '12-25'=>'聖誕節'
+              ];
+
+
 
             for($i=0;$i<6;$i++){
               echo "<tr>";
               for($j=0;$j<7;$j++){
                 echo "<td>";
-        
+                $date='';
                 // 1號前的留空格
                 if($i==0 && $j<$startWeekday){
                   //印上個月日期
@@ -320,10 +367,13 @@
                   
                   // 印日期
                 }else{
-                  echo ((7*$i)+1+$j-$startWeekday);
+                  $date=((7*$i)+1+$j-$startWeekday);
                 }
-                      if((7*$i)+1+$j-$startWeekday==$todaydate && $month==date('m') && $year==date('Y')){
+                echo $date;
+                      if($date==$todaydate && $month==date('m') && $year==date('Y')){
                         echo "<div class='todaydate'>It's Today.</div>";
+                      }elseif (!empty($holiday[$month.'-'.$date])) {
+                        echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div><div class='hcircle'></div>";
                       }
                 
                 echo "</td>";
