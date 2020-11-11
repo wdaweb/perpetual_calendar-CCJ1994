@@ -174,27 +174,20 @@
     }
     .todaydate{
       font-size:10px;
-      color: #34495e;
-      position:relative;
-      z-index:99;
-    }
-    .todaydate::before{
-      position:absolute;
-      content:"";
       background:#2d98da;
       border-radius: 50%;
       width: 30px;
       height: 30px;
-      transform: translate(-5px,-35px);
+      transform: translate(0px,-33px);
       opacity:0.5;
-      /* box-shadow: 0 0 0 0 #34495e; */
-      animation:point 0.8s infinite ease alternate;
-
+      box-shadow: 0 0 0 0 #2d98da,inset 0 0 0 0 #2d98da;
+      animation:point 0.5s infinite linear alternate;
     }
+    
     @keyframes point{
       100%{
-        width: 32px;
-      height: 32px;
+      box-shadow: 0 0 0 2px #2d98da,inset 0 0 0 2px #2d98da;
+      box-shadow:;
       }
     }
     .holiday{
@@ -222,10 +215,6 @@
     .hcircle:hover{
       box-shadow: 0 0 0 200px #e74c3c;
     }
-    
-
-    
-    
 
   </style>
 </head>
@@ -373,7 +362,7 @@
                 }
                 echo $date;
                       if($date==$todaydate && $month==date('m') && $year==date('Y')){
-                        echo "<div class='todaydate'>It's Today.</div>";
+                        echo "<div class='todaydate'></div>";
                       }elseif (!empty($holiday[$month.'-'.$date])) {
                         echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div><div class='hcircle'></div>";
                       }
