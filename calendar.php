@@ -146,7 +146,7 @@
 
     table td {
       vertical-align:top;
-      padding: 15px 10px;
+      padding: 15px;
       border: 1px solid #ced6e0;   
       font-weight: bold; 
       font-size: 30px;
@@ -181,20 +181,22 @@
     .todaydate::before{
       position:absolute;
       content:"";
-      background:#34495e;
+      background:#2d98da;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       transform: translate(-5px,-35px);
       opacity:0.5;
-      box-shadow: 0 0 0 0 #34495e;
-      transition: 1s;
+      /* box-shadow: 0 0 0 0 #34495e; */
+      animation:point 0.8s infinite ease alternate;
+
     }
-    .todaydate:hover::before{
-      box-shadow: 0 0 0 200px #34495e;
-      
+    @keyframes point{
+      100%{
+        width: 32px;
+      height: 32px;
+      }
     }
-    
     .holiday{
       position:relative;
       font-family: 'Noto Serif TC', serif;
@@ -212,7 +214,7 @@
       height:10px;
       background: #e74c3c;
       border-radius:50%;
-      transform:translate(0px,0px);
+      transform:translate(70px,-50px);
       box-shadow: 0 0 0 0 #e74c3c;
       transition: 1s;
       
