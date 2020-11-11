@@ -1,3 +1,68 @@
+<?php
+    date_default_timezone_set("Asia/Taipei");
+
+    if(isset($_GET['m']) && isset($_GET['y'])){
+      $month=$_GET['m'];
+      $year=$_GET['y'];
+    }else{
+      $month=date("m");
+      $year=date("Y");
+    }
+    
+
+    if(isset($_GET['d'])){
+      $today=$_GET['d'];
+
+    }else{
+      $today=date('d');
+    }
+
+    // prevmonth
+    if($month<=1){
+      $prevMonth=12;
+      $prevYear=$year-1;
+    }else{
+      $prevMonth=$month-1;
+      $prevYear=$year;
+    }
+    // nextmonth
+    if($month>=12){
+      $nextMonth=1;
+      $nextYear=$year+1;
+    }else{
+      $nextMonth=$month+1;
+      $nextYear=$year;
+    }
+
+    $first="$year-$month-01";
+    $firstDate=strtotime("$year-$month-01");
+    // 第一天在星期幾
+    $startWeekday=date("w",$firstDate);
+    // 最後一天在星期幾
+    // $endweekday=date("w",strtotime("$year-$month-$days"));
+    // 當月份有幾天
+    $days=date("t",strtotime($first));
+    $prevMonthdays=date("t",strtotime("$prevYear-$prevMonth-01"));
+    $today=date("d");
+    $todaydate=date("m-d");
+
+    $holiday=[
+      '1-1'=>'元旦',
+      '2-28'=>'和平紀念日',
+      '3-8'=>'婦女節',
+      '4-4'=>'兒童節',
+      '5-1'=>'勞動節',
+      '9-3'=>'軍人節',
+      '9-28'=>'教師節',
+      '10-10'=>'國慶日',
+      '10-25'=>'光復節',
+      '10-31'=>'萬聖節',
+      '11-11'=>'光棍節',
+      '12-25'=>'聖誕節'
+    ];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,40 +75,146 @@
   <style>
      *{
       font-family: 'PT Serif', serif;
+      color:#34495e;
     }
-    
+    body{
+      background-image:url(./img/bg2.jpg);
+    }
     .container{
       display: flex;
-      width: 1050px;
+      width: 1150px;
       margin: 30px auto;
-      border: 1px solid #f1f2f6;
-      border-radius: 5px;
-      box-shadow: 0px 10px 15px #f1f2f6;
+      /* border: 1px solid #f1f2f6; */
+      border-radius: 10px;
+      box-shadow: 0px 1px 10px #2c3e50;
       background-color: #f6f8fa;
-      
     }
     .sidel{
       width: 50px;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
     .sider{
-      width: 200px;
-      /* background-color: #2d98da; */
-      background-image: url(./img/sider7.png);
-      border-bottom-right-radius: 5px;
-      border-top-right-radius: 5px;
+      width: 300px;
+      background-color: #bdc3c7;
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 10px;
     }
     
+    <?php
+      switch(!empty($month)){
+        case $month<=2 ||$month>=12:
+    ?>
+          .bgimg{
+            background-image: url(./img/winter.jpg);
+            position:relative;
+          }
+          .bgimg::before{
+            content:"WINTER";
+            position:absolute;
+            font-size:50px;
+            color:#fff;
+            top:345px;
+            left:50px;
+            text-shadow:0px 0px 10px #34495e;
+            border:2px solid #eee;
+            border-radius: 5px;
+            transition:1s;
+            box-shadow:inset 0 0 0 0 #fff;
+          }
+          .bgimg:hover::before{
+            box-shadow:inset 0 0 0 50px #fff;
+
+          }
+    <?php
+        break;
+        case $month>2 && $month<=5:
+    ?>
+        .bgimg{
+            background-image: url(./img/spring.jpg);
+            background-position:-150px -50px;
+            position:relative;
+          }
+          .bgimg::before{
+            content:"SPRING";
+            position:absolute;
+            font-size:50px;
+            color:#fff;
+            top:345px;
+            left:60px;
+            text-shadow:0px 0px 10px #34495e;
+            border:2px solid #eee;
+            border-radius: 5px;
+            transition:1s;
+            box-shadow:inset 0 0 0 0 #fff;
+          }
+          .bgimg:hover::before{
+            box-shadow:inset 0 0 0 50px #fff;
+
+          }
+    <?php
+        break;
+        case $month>5 && $month<=8:
+    ?>
+        .bgimg{
+            background-image: url(./img/summer.jpg);
+            background-position:-150px -200px;
+            position:relative;
+          }
+          .bgimg::before{
+            content:"SUMMER";
+            position:absolute;
+            font-size:50px;
+            color:#fff;
+            top:345px;
+            left:40px;
+            text-shadow:0px 0px 10px #34495e;
+            border:2px solid #eee;
+            border-radius: 5px;
+            transition:1s;
+            box-shadow:inset 0 0 0 0 #fff;
+          }
+          .bgimg:hover::before{
+            box-shadow:inset 0 0 0 50px #fff;
+
+          }
+    <?php
+        break;
+        case $month>8 && $month<=11:
+    ?>
+      .bgimg{
+          background-image: url(./img/autumn.jpg);
+          position:relative;
+          }
+          .bgimg::before{
+            content:"AUTUMN";
+            position:absolute;
+            font-size:50px;
+            color:#fff;
+            top:345px;
+            left:40px;
+            text-shadow:0px 0px 10px #34495e;
+            border:2px solid #eee;
+            border-radius: 5px;
+            transition:1s;
+            box-shadow:inset 0 0 0 0 #fff;
+          }
+          .bgimg:hover::before{
+            box-shadow:inset 0 0 0 50px #fff;
+
+          }
+    <?php
+        break;
+      }   
+    ?>
     table {
       margin: auto;
       height: 700px;
       width: 800px;
       border-collapse: collapse;
       table-layout: fixed;
-      word-break: break-all;
+      
     }
-
     thead {
       text-align: left;
     }
@@ -70,7 +241,7 @@
       padding: 5px;
       text-decoration: none;
       font-size: 18px;
-      color: #2d98da;
+      color: #7f8c8d;
     }
     .navbar:hover{
       color:#34495e;
@@ -141,7 +312,7 @@
       text-align:right;
       padding-right:50px;
       font-size:40px;
-      color: #2c3e50;
+      color: #34495e;
     }
 
     table td {
@@ -174,19 +345,19 @@
     }
     .todaydate{
       font-size:10px;
-      background:#2d98da;
+      background:#f1c40f;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       transform: translate(0px,-33px);
       opacity:0.5;
-      box-shadow: 0 0 0 0 #2d98da,inset 0 0 0 0 #2d98da;
+      box-shadow: 0 0 0 0 #f1c40f,inset 0 0 0 0 #f1c40f;
       animation:point 0.5s infinite linear alternate;
     }
     
     @keyframes point{
       100%{
-      box-shadow: 0 0 0 2px #2d98da,inset 0 0 0 2px #2d98da;
+      box-shadow: 0 0 0 2px #f1c40f,inset 0 0 0 2px #f1c40f;
       box-shadow:;
       }
     }
@@ -197,6 +368,7 @@
       color:#f6f8fa;
       z-index:2;
     }
+    
 
     table td:hover .holiday{
       color: #fff;
@@ -217,74 +389,40 @@
     .holiday:hover::before{
       box-shadow: 0 0 0 200px #e74c3c;
     }
-
-
-    /* .hcircle{
+    .tholiday{
       position:relative;
+      font-family: 'Noto Serif TC', serif;
+      font-size:10px;
+      color:#f6f8fa;
+      z-index:2;
+      margin:0;
+    }
+    .tholiday::before{
+      content:"";
+      position:absolute;
       width:10px;
       height:10px;
       background: #e74c3c;
+      z-index:-1;
+      top:-60px;
+      left:70px;
       border-radius:50%;
-      transform:translate(70px,-50px);
       box-shadow: 0 0 0 0 #e74c3c;
       transition: 1s;
     }
-
-    .hcircle:hover{
+    .tholiday:hover::before{
       box-shadow: 0 0 0 200px #e74c3c;
-    } */
+    }
+    table td:hover .tholiday{
+      color: #fff;
+    }
+
+    
 
   </style>
 </head>
 <body>
-  <?php
-    date_default_timezone_set("Asia/Taipei");
 
-    if(isset($_GET['m']) && isset($_GET['y'])){
-      $month=$_GET['m'];
-      $year=$_GET['y'];
-    }else{
-      $month=date("m");
-      $year=date("Y");
-    }
-    
-
-    if(!empty($_GET['d'])){
-      $today=$_GET['d'];
-    }
-    // }else{
-    //   $today=date('d');
-    // }
-
-    // prevmonth
-    if($month<=1){
-      $prevMonth=12;
-      $prevYear=$year-1;
-    }else{
-      $prevMonth=$month-1;
-      $prevYear=$year;
-    }
-    // nextmonth
-    if($month>=12){
-      $nextMonth=1;
-      $nextYear=$year+1;
-    }else{
-      $nextMonth=$month+1;
-      $nextYear=$year;
-    }
-
-    $first="$year-$month-01";
-    $firstDate=strtotime("$year-$month-01");
-    // 第一天在星期幾
-    $startWeekday=date("w",$firstDate);
-    // 最後一天在星期幾
-    // $endweekday=date("w",strtotime("$year-$month-$days"));
-    // 當月份有幾天
-    $days=date("t",strtotime($first));
-    $prevMonthdays=date("t",strtotime("$prevYear-$prevMonth-01"));
-    $today=date("d");
-    $todaydate=date("d");
-?>
 <div class="container">
     <div class="sidel"></div>
     <div class="calendar">
@@ -328,7 +466,7 @@
               </div>
               
               <!-- 今天幾號星期幾 -->
-              <div class="today"><?php echo date('M').".&nbsp;".$todaydate;?></div>
+              <div class="today"><?php echo date('M').".&nbsp;".$today;?></div>
             </th>
           </tr>
           <tr>
@@ -342,22 +480,7 @@
           </tr>
         </thead>
         <?php
-              $holiday=[
-                '1-1'=>'元旦',
-                '2-28'=>'和平紀念日',
-                '3-8'=>'婦女節',
-                '4-4'=>'兒童節',
-                '5-1'=>'勞動節',
-                '9-3'=>'軍人節',
-                '9-28'=>'教師節',
-                '10-10'=>'國慶日',
-                '10-25'=>'光復節',
-                '10-31'=>'萬聖節',
-                '12-25'=>'聖誕節'
-              ];
-
-
-
+              
             for($i=0;$i<6;$i++){
               echo "<tr>";
               for($j=0;$j<7;$j++){
@@ -379,9 +502,13 @@
                   $date=((7*$i)+1+$j-$startWeekday);
                 }
                 echo $date;
-                      if($date==$todaydate && $month==date('m') && $year==date('Y')){
+                      if($date==date('d') && $month==date('m') && $year==date('Y')){
                         echo "<div class='todaydate'></div>";
-                      }elseif (!empty($holiday[$month.'-'.$date])) {
+
+                      if (!empty($holiday[$month.'-'.$date])) {
+                        echo "<div class='tholiday'>{$holiday[$month.'-'.$date]}</div>";
+                      }
+                      }else if (!empty($holiday[$month.'-'.$date])) {
                         echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div>";
                       }
                 
@@ -393,7 +520,7 @@
         </tbody>
       </table>
     </div>
-    <div class="sider"></div>
+    <div class="sider bgimg"></div>
   </div>
 </body>
 </html>
