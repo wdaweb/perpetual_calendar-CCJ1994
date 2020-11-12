@@ -102,7 +102,7 @@
     }
     
     <?php
-      switch(!empty($month)){
+      switch($month){
         case $month<=2 ||$month>=12:
     ?>
           .bgimg{
