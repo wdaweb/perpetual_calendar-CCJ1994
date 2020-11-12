@@ -9,7 +9,6 @@
       $year=date("Y");
     }
     
-
     if(isset($_GET['d'])){
       $today=$_GET['d'];
 
@@ -46,6 +45,7 @@
     $today=date("d");
     $todaydate=date("m-d");
 
+    // 設節日
     $holiday=[
       '1-1'=>'元旦',
       '2-28'=>'和平紀念日',
@@ -100,7 +100,8 @@
       border-bottom-right-radius: 10px;
       border-top-right-radius: 10px;
     }
-    
+
+    /* 每個季節換圖片 */
     <?php
       switch($month){
         case $month<=2 ||$month>=12:
@@ -466,7 +467,7 @@
                 </div>
               </div>
               
-              <!-- 今天幾號星期幾 -->
+              <!-- 顯示今天幾號星期幾 -->
               <div class="today"><?php echo date('M').".&nbsp;".$today;?></div>
             </th>
           </tr>
@@ -481,12 +482,13 @@
           </tr>
         </thead>
         <?php
-              
+            // 印表格  
             for($i=0;$i<6;$i++){
               echo "<tr>";
               for($j=0;$j<7;$j++){
                 echo "<td>";
                 $date='';
+
                 // 1號前的留空格
                 if($i==0 && $j<$startWeekday){
                   //印上個月日期
@@ -503,12 +505,16 @@
                   $date=((7*$i)+1+$j-$startWeekday);
                 }
                 echo $date;
+
+                      // 當天日期標記
                       if($date==date('d') && $month==date('m') && $year==date('Y')){
                         echo "<div class='todaydate'></div>";
-
+                      // 當天日期和節日一起出現
                       if (!empty($holiday[$month.'-'.$date])) {
                         echo "<div class='tholiday'>{$holiday[$month.'-'.$date]}</div>";
                       }
+
+                      // 節日
                       }else if (!empty($holiday[$month.'-'.$date])) {
                         echo "<div class='holiday'>{$holiday[$month.'-'.$date]}</div>";
                       }
