@@ -434,12 +434,12 @@
             <th colspan="7" class="nav">
               <div class="bar">
                 <div class="bar1">
-                  <a class="navbar" href="calendar.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
+                  <a class="navbar" href="index.php?y=<?=$prevYear;?>&m=<?=$prevMonth;?>">&lt;</a>
                   <span class="navbar"><?php echo date("M",strtotime($first)).'-'.date("Y",strtotime($first));?></span>
-                  <a class="navbar" href="calendar.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
+                  <a class="navbar" href="index.php?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">&gt;</a>
                 </div>
                 <div class="bar2">
-                  <form action="calendar.php" method="get">
+                  <form action="index.php" method="get">
                     <div class="selectm" >
                       <select name="m">
                         <option value="<?php echo date('m');?>"><?php echo date('M').".";?></option>
